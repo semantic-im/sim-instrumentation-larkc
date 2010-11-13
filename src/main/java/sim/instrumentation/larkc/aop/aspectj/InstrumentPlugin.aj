@@ -24,8 +24,8 @@ import sim.instrumentation.aop.aspectj.AbstractMethodInterceptor;
  * @author mcq
  * 
  */
-public aspect InstrumentDeciderPlugin extends AbstractMethodInterceptor {
+public aspect InstrumentPlugin extends AbstractMethodInterceptor {
 	
-	public pointcut methodExecution(): within(eu.larkc.plugin.decide.Decider) && execution(* *(..));
+	public pointcut methodExecution(): within(eu.larkc.plugin.Plugin) && execution(* *(..));
 
 }
