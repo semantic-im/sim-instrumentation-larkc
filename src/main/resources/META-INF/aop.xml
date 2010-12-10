@@ -3,6 +3,7 @@
 		<aspect name="sim.instrumentation.aop.aspectj.AbstractMethodInterceptor" />
 		<aspect name="sim.instrumentation.aop.aspectj.AnnotationMethodInterceptor" />
 		<aspect name="sim.instrumentation.larkc.aop.aspectj.InstrumentPlugin" />
+		<aspect name="sim.instrumentation.larkc.aop.aspectj.InstrumentLarkcMain" />
 		<include within="sim.instrumentation.aop.aspectj..*" />
 		<include within="sim.instrumentation.larkc.aop.aspectj..*" />
 	</aspects>

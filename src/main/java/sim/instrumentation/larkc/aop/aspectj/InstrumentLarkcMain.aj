@@ -15,17 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package sim.instrumentation.larkc.aop.aspectj;
 
 import sim.instrumentation.aop.aspectj.AbstractMethodInterceptor;
 
 /**
  * @author mcq
- * 
+ *
  */
-public aspect InstrumentPlugin extends AbstractMethodInterceptor {
-	
-	public pointcut methodExecution(): within(eu.larkc.plugin.Plugin+) && execution(* *(..));
+public aspect InstrumentLarkcMain extends AbstractMethodInterceptor {
+
+	public pointcut methodExecution(): within(eu.larkc.core.Larkc) && execution(* *(..));
 
 }
