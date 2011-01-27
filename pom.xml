@@ -86,6 +86,7 @@
 					<ajdtVersion>1.5</ajdtVersion>
 				</configuration>
 			</plugin>
+			<!-- 
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.2</version>
@@ -104,6 +105,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			 -->
 		</plugins>
 	</build>
 </project>

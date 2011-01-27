@@ -15,17 +15,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package sim.instrumentation.aop.aspectj.larkc;
 
-package sim.instrumentation.larkc.aop.aspectj;
+import java.util.UUID;
+
+import org.aspectj.lang.JoinPoint;
 
 import sim.instrumentation.aop.aspectj.AbstractMethodInterceptor;
+import sim.instrumentation.data.ExecutionFlowContext;
 
 /**
  * @author mcq
- * 
+ *
  */
 public aspect InstrumentPlugin extends AbstractMethodInterceptor {
+
+	public pointcut methodExecution(): within(eu.larkc.plugin.Plugin) && execution(* invoke(..));
 	
-	public pointcut methodExecution(): within(eu.larkc.plugin.Plugin) && execution(* *(..));
+	protected void beforeInvoke(JoinPoint jp) {
+		// TODO: fix hack; do not use reflection
+		Object thiz = jp.getThis();
+		String pluginName = null;
+		try {
+			pluginName = thiz.getClass().getMethod("getIdentifier").invoke(thiz).toString();
+		} catch (Exception e) {
+			pluginName = "unknown";
+		}
+		ExecutionFlowContext.createNewContext().
+			put("pluginid", UUID.randomUUID().toString()).
+			put("tag", "plugin").
+			put("name", "PluginExecution").
+			put("pluginName", pluginName);
+	} 
+
+	protected void afterInvoke() {
+		ExecutionFlowContext.destroyCurrentContext();
+	}
 
 }
