@@ -17,29 +17,14 @@
  */
 package sim.instrumentation.aop.aspectj.larkc;
 
-import java.util.UUID;
-
-import org.aspectj.lang.JoinPoint;
-
-import sim.instrumentation.aop.aspectj.AbstractMethodInterceptor;
-import sim.instrumentation.data.ExecutionFlowContext;
+import sim.instrumentation.aop.aspectj.AbstractMethodInstrumentation;
 
 /**
  * @author mcq
- *
+ * 
  */
-public aspect InstrumentQuery extends AbstractMethodInterceptor {
+public aspect InstrumentQuery extends AbstractMethodInstrumentation {
 
-	public pointcut methodExecution(): within(eu.larkc.core.endpoint.sparql.SparqlHandler) && execution(* handle(..));
-	
-	protected void beforeInvoke(JoinPoint jp) {
-		ExecutionFlowContext.createNewContext().
-			put("queryid", UUID.randomUUID().toString()).
-			put("tag", "query").
-			put("name", "QueryTotal");
-	} 
+	public pointcut methodsToInstrument(): within(eu.larkc.core.endpoint.sparql.SparqlHandler) && execution(* handle(..));
 
-	protected void afterInvoke() {
-		ExecutionFlowContext.destroyCurrentContext();
-	} 
 }

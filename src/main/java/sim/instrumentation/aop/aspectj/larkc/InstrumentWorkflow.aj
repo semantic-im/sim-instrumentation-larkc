@@ -17,37 +17,29 @@
  */
 package sim.instrumentation.aop.aspectj.larkc;
 
-import java.util.UUID;
-
-import org.aspectj.lang.JoinPoint;
-
-import sim.instrumentation.aop.aspectj.AbstractMethodInterceptor;
-import sim.instrumentation.data.ExecutionFlowContext;
+import sim.instrumentation.aop.aspectj.AbstractMethodInstrumentation;
 
 /**
  * @author mcq
  *
  */
-public aspect InstrumentWorkflow extends AbstractMethodInterceptor {
+public aspect InstrumentWorkflow extends AbstractMethodInstrumentation {
 
-	public pointcut methodExecution(): within(eu.larkc.core.executor.Executor) && execution(eu.larkc.core.executor.Executor.new(..));
+	public pointcut methodsToInstrument(): within(eu.larkc.core.executor.Executor) && execution(eu.larkc.core.executor.Executor.new(..));
 	
-	protected void beforeInvoke(JoinPoint jp) {
-//		// TODO: fix hack; do not use reflection
-//		Object thiz = jp.getThis();
-//		String workflowid = null;
-//		try {
-//			workflowid = thiz.getClass().getMethod("getId").invoke(thiz).toString();
-//		} catch (Exception e) {
-//			workflowid = UUID.randomUUID().toString();
-//		}
-		ExecutionFlowContext.createNewContext().
-			put("workflowid", UUID.randomUUID().toString()).
-			put("tag", "workflow").
-			put("name", "WorkflowCreate");
-	} 
-
-	protected void afterInvoke() {
-		//ExecutionFlowContext.destroyCurrentContext();
-	} 
+//	protected void beforeInvoke(JoinPoint jp) {
+////		// TODO: fix hack; do not use reflection
+////		Object thiz = jp.getThis();
+////		String workflowid = null;
+////		try {
+////			workflowid = thiz.getClass().getMethod("getId").invoke(thiz).toString();
+////		} catch (Exception e) {
+////			workflowid = UUID.randomUUID().toString();
+////		}
+//		ExecutionFlowContext.createNewContext("WorkflowCreate", "workflow");
+//	} 
+//
+//	protected void afterInvoke() {
+//		//ContextManager.destroyCurrentContext();
+//	} 
 }

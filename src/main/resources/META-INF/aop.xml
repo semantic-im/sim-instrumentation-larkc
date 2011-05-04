@@ -1,0 +1,18 @@
+<aspectj>
+	<aspects>
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.CreatePlatformContext" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.CreatePluginContext" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.CreateQueryContext" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.CreateWorkflowContext" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.PluginWriteToContext" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.WorkflowWriteToContext" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentPlatform" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentPlugin" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentQuery" />
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentWorkflow" />
+	</aspects>
+	<weaver options="-verbose -showWeaveInfo">
+		<include within="eu.larkc..*" />
+		<exclude within="sim..*" />
+	</weaver>
+</aspectj>

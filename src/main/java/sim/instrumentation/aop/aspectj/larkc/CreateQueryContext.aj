@@ -17,14 +17,21 @@
  */
 package sim.instrumentation.aop.aspectj.larkc;
 
-import sim.instrumentation.aop.aspectj.AbstractMethodInstrumentation;
+import org.aspectj.lang.JoinPoint;
+
+import sim.instrumentation.aop.aspectj.AbstractContextCreator;
 
 /**
  * @author mcq
  *
  */
-public aspect InstrumentPlatform extends AbstractMethodInstrumentation {
+public aspect CreateQueryContext extends AbstractContextCreator {
 
-	public pointcut methodsToInstrument(): within(eu.larkc.core.Larkc) && execution(public static void main(..));
+	public pointcut methodToCreateNewContext(): within(eu.larkc.core.endpoint.sparql.SparqlHandler) && execution(* handle(..));
+
+	@Override
+	protected String[] getContextNameAndTag(JoinPoint jp) {
+		return new String[] {"QueryTotal", "query"};
+	}
 
 }
