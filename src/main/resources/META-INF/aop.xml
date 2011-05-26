@@ -6,10 +6,15 @@
 		<aspect name="sim.instrumentation.aop.aspectj.larkc.CreateWorkflowContext" />
 		<aspect name="sim.instrumentation.aop.aspectj.larkc.PluginWriteToContext" />
 		<aspect name="sim.instrumentation.aop.aspectj.larkc.WorkflowWriteToContext" />
+
+		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentAllLarkcPublicMethods" />
+<!-- 
 		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentPlatform" />
 		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentPlugin" />
 		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentQuery" />
 		<aspect name="sim.instrumentation.aop.aspectj.larkc.InstrumentWorkflow" />
+ -->		
+		
 	</aspects>
 	<weaver options="-verbose -showWeaveInfo">
 		<include within="eu.larkc..*" />
