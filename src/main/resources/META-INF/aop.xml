@@ -16,7 +16,7 @@
  -->		
 		
 	</aspects>
-	<weaver options="-verbose -showWeaveInfo">
+	<weaver>
 		<include within="eu.larkc..*" />
 		<exclude within="sim..*" />
 	</weaver>
